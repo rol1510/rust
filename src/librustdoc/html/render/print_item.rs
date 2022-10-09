@@ -687,16 +687,8 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                         cx,
                         RenderMode::Normal,
                     );
-                    match *m.kind {
-                        clean::MethodItem(ref inner, _)
-                            if !inner.generics.where_predicates.is_empty() =>
-                        {
-                            w.write_str(",\n    { ... }\n");
-                        }
-                        _ => {
-                            w.write_str(" { ... }\n");
-                        }
-                    }
+
+                    w.write_str(" { ... }\n");
 
                     if pos < provided_methods.len() - 1 {
                         w.write_str("<span class=\"item-spacer\"></span>");
