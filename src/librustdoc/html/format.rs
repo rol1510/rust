@@ -353,14 +353,7 @@ pub(crate) fn print_where_clause<'a, 'tcx: 'a>(
         } else {
             let mut br_with_padding = String::with_capacity(6 * indent + 28);
             br_with_padding.push_str("<br>");
-
-            let padding_amout = if ending == Ending::Newline {
-                indent + 4
-            } else {
-                indent + "fn ".len() + "where ".len()
-            };
-
-            for _ in 0..padding_amout {
+            for _ in 0..indent + 4 {
                 br_with_padding.push_str("&nbsp;");
             }
             let where_preds = where_preds.to_string().replace("<br>", &br_with_padding);
@@ -374,13 +367,8 @@ pub(crate) fn print_where_clause<'a, 'tcx: 'a>(
                 if indent == 0 {
                     format!("<br><span class=\"where\">where{where_preds}</span>")
                 } else {
-                    // put the first one on the same line as the 'where' keyword
-                    let where_preds = where_preds.replacen(&br_with_padding, " ", 1);
-
                     let mut clause = br_with_padding;
-                    let space_needed_for_where_keyword = "where ".len() * "&nbsp;".len();
-                    clause.truncate(clause.len() - space_needed_for_where_keyword);
-
+                    clause.truncate(clause.len() - 4 * "&nbsp;".len());
                     write!(clause, "<span class=\"where\">where{where_preds}</span>")?;
                     clause
                 }

@@ -662,8 +662,7 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                 }
 
                 if !required_methods.is_empty() {
-                    let plural_prefix = if required_methods.len() > 1 { "s" } else { "" };
-                    write!(w, "    # Required method{}\n", plural_prefix);
+                    write!(w, "    # Required method{}\n", pluralize(required_methods.len()));
                 }
                 for (pos, m) in required_methods.iter().enumerate() {
                     render_assoc_item(
@@ -685,8 +684,7 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                 }
 
                 if !provided_methods.is_empty() {
-                    let plural_prefix = if provided_methods.len() > 1 { "s" } else { "" };
-                    write!(w, "    # Provided method{}\n", plural_prefix);
+                    write!(w, "    # Provided method{}\n", pluralize(provided_methods.len()));
                 }
                 for (pos, m) in provided_methods.iter().enumerate() {
                     render_assoc_item(
@@ -1840,11 +1838,7 @@ fn render_struct(
 }
 
 fn document_non_exhaustive_header(item: &clean::Item) -> &str {
-    if item.is_non_exhaustive() {
-        " (Non-exhaustive)"
-    } else {
-        ""
-    }
+    if item.is_non_exhaustive() { " (Non-exhaustive)" } else { "" }
 }
 
 fn document_non_exhaustive(w: &mut Buffer, item: &clean::Item) {
@@ -1999,9 +1993,5 @@ fn document_type_layout(w: &mut Buffer, cx: &Context<'_>, ty_def_id: DefId) {
 }
 
 fn pluralize(count: usize) -> &'static str {
-    if count > 1 {
-        "s"
-    } else {
-        ""
-    }
+    if count > 1 { "s" } else { "" }
 }
