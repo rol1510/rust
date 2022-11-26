@@ -662,7 +662,7 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                 }
 
                 if !required_methods.is_empty() {
-                    write!(w, "    # Required method{}\n", pluralize(required_methods.len()));
+                    write!(w, "    // Required method{}\n", pluralize(required_methods.len()));
                 }
                 for (pos, m) in required_methods.iter().enumerate() {
                     render_assoc_item(
@@ -684,7 +684,7 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                 }
 
                 if !provided_methods.is_empty() {
-                    write!(w, "    # Provided method{}\n", pluralize(provided_methods.len()));
+                    write!(w, "    // Provided method{}\n", pluralize(provided_methods.len()));
                 }
                 for (pos, m) in provided_methods.iter().enumerate() {
                     render_assoc_item(
