@@ -41,6 +41,12 @@ pub trait TraitWhere {
     where
         Self: Sized,
     { todo!() }
+
+    fn merge<T>(self, a: T)
+    where
+        Self: Sized,
+        T: Sized,
+    { todo!() }
 }
 
 // @has foo/struct.Echo.html '//*[@class="impl has-srclink"]//h3[@class="code-header"]' \
