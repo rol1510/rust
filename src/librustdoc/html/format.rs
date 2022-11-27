@@ -354,11 +354,7 @@ pub(crate) fn print_where_clause<'a, 'tcx: 'a>(
             let mut br_with_padding = String::with_capacity(6 * indent + 28);
             br_with_padding.push_str("<br>");
 
-            let padding_amout = if ending == Ending::Newline {
-                indent + 4
-            } else {
-                indent + "fn where ".len()
-            };
+            let padding_amout = if ending == Ending::Newline { indent + 4 } else { indent + "fn where ".len() };
 
             for _ in 0..padding_amout {
                 br_with_padding.push_str("&nbsp;");
