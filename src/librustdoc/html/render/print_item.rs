@@ -696,7 +696,7 @@ fn item_trait(w: &mut Buffer, cx: &mut Context<'_>, it: &clean::Item, t: &clean:
                         RenderMode::Normal,
                     );
 
-                    w.write_str(";\n");
+                    w.write_str("\n");
 
                     if pos < provided_methods.len() - 1 {
                         w.write_str("<span class=\"item-spacer\"></span>");
